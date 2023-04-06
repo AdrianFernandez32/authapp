@@ -1,14 +1,8 @@
-import express from 'express'
-const app = express()
-app.use(express.json())
+import { App } from "./app";
 
-const PORT = 8080
+async function main() {
+    const app = new App(8080);
+    await app.listen();
+}
 
-app.get('/ping', (_req, res) => {
-    console.log('soy gay')
-    res.send('yo tambien')
-})
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
+main();
