@@ -23,12 +23,12 @@ export async function authentication(req: Request, res: Response) {
     const newLogin: ILogin = req.body;
     const conn = await connect();
     const query = `SELECT id FROM users WHERE '${newLogin.email}' = email AND '${newLogin.contrasena}' = contrasena`;
-    const user = await conn.query(query);
-    if (user.length > 0) {
+    const user: any = await conn.query(query);
+    if (user[0].length === 1) {
         jwt.sign({user}, 'secretkey', (err: any, token: any) =>{
             res.json({
                 token
-            });
+            })
         })
     } else {
         res.status(404).json({
