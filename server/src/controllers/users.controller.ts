@@ -42,4 +42,4 @@ export async function updateUser(req: Request, res: Response) {
     return res.json({
         message: 'Post updated'
     });
-}
+};
