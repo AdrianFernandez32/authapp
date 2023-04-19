@@ -1,4 +1,5 @@
 import { Router } from "express";
+import verfiyToken from "../middleware/auth.middleware"
 
 const router = Router();
 import { getUsers, createUser, getUser, deleteUser, updateUser } from "../controllers/users.controller";
@@ -8,7 +9,7 @@ router.route('/')
     .post(createUser)
 
 router.route('/:postId')
-    .get(getUser)
+    .get(verfiyToken, getUser)
     .delete(deleteUser)
-    .put(updateUser)
+    .put(verfiyToken, updateUser)
 export default router;
